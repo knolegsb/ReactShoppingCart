@@ -2,6 +2,7 @@ import React from "react";
 import data from "./data.json";
 import Products from "./components/Product";
 import Filter from "./components/Filter";
+import Cart from "./components/Cart";
 
 class App extends React.Component {
   constructor() {
@@ -59,7 +60,9 @@ class App extends React.Component {
               ></Filter>
               <Products products={this.state.products}></Products>
             </div>
-            <div className="sidebar">Cart Items</div>
+            <div className="sidebar">
+              <Cart />                
+            </div>
           </div>
         </main>
         <footer>All right is reserved</footer>
