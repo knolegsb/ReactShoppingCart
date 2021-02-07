@@ -2,14 +2,32 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const shortid = require("shortid");
-
 const app = express();
+require('dotenv').config();
+
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb", {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
+// mongoose.connect(MONGOURI);
+// mongoose.connection.on('connected', () => {
+//     console.log("Connected to MONGO...");
+// });
+
+// mongoose.connect(MONGOURI, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+// });
+
+// database connection
+mongoose
+    .connect(process.env.MONGO_URI, {useNewUrlParser: true, useCreateIndex:true, useFindAndModify: false, useUnifiedTopology: true})
+    .then(() => console.log("DB Connected"))
+    .catch(err => {
+        console.log(err);
+    });
+
+mongoose.connection.on("error", err => {
+    console.log(`DB connection error: ${err.message}`);
 });
 
 const Product = mongoose.model("products",
