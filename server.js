@@ -7,17 +7,6 @@ require('dotenv').config();
 
 app.use(bodyParser.json());
 
-// mongoose.connect(MONGOURI);
-// mongoose.connection.on('connected', () => {
-//     console.log("Connected to MONGO...");
-// });
-
-// mongoose.connect(MONGOURI, {
-//     useNewUrlParser: true,
-//     useCreateIndex: true,
-//     useUnifiedTopology: true,
-// });
-
 // database connection
 mongoose
     .connect(process.env.MONGO_URI, {useNewUrlParser: true, useCreateIndex:true, useFindAndModify: false, useUnifiedTopology: true})
